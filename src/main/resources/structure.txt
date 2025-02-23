@@ -1,0 +1,6 @@
+parent_dir1/
+parent_dir1/child_dir1/
+parent_dir1/child_dir2/
+
+parent_dir2/
+parent_dir2/child_dir3/

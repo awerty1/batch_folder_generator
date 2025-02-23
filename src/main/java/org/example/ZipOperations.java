@@ -20,11 +20,11 @@ public class ZipOperations {
             while ((len = fis.read(buffer)) > 0) {
                 zout.write(buffer, 0, len);
             }
-            zout.closeEntry();
-            System.out.println("File zipped: " + zipFile);
 
+            zout.closeEntry();
+            System.out.println(STR."File zipped: \{zipFile}");
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(STR."Error during zipping: \{ex.getMessage()}");
         }
     }
 
@@ -35,20 +35,19 @@ public class ZipOperations {
             while ((entry = zin.getNextEntry()) != null) {
                 String name = entry.getName();
 
-                try (FileOutputStream fout = new FileOutputStream(destDir + "\\" + name)) {
+                try (FileOutputStream fout = new FileOutputStream(STR."\{destDir}\\\{name}")) {
                     byte[] buffer = new byte[1024];
                     int len;
+
                     while ((len = zin.read(buffer)) > 0) {
                         fout.write(buffer, 0, len);
                     }
                     zin.closeEntry();
-                    System.out.printf("Unzipped: %s\n", name);
+                    System.out.printf(STR."Unzipped: \{name}\n");
                 }
-
             }
-
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(STR."Error during unzipping: \{ex.getMessage()}");
         }
     }
 }
